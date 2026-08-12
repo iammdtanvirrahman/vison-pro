@@ -11,8 +11,7 @@ const cursor = $('#spatialCursor');
 const gestureState = $('#gestureState');
 
 const MODEL_URL = 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task';
-const WASM_URL = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.22/wasm';
-const LIB_URL = 'https://esm.run/@mediapipe/tasks-vision@0.10.22';
+const WASM_URL = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm';
 
 let stream = null;
 let vision = false;
@@ -82,7 +81,15 @@ async function loadHands() {
   setStatus('LOADING HAND MODEL', 'Preparing spatial hand control…');
 
   try {
-    const { HandLandmarker, FilesetResolver } = await import(LIB_URL);
+    // vision_bundle.mjs is loaded by index.html using the official MediaPipe CDN setup.
+    // It exposes HandLandmarker and FilesetResolver globally.
+    const HandLandmarker = globalThis.HandLandmarker;
+    const FilesetResolver = globalThis.FilesetResolver;
+
+    if (!HandLandmarker || !FilesetResolver) {
+      throw new Error('MediaPipe vision_bundle.mjs did not expose HandLandmarker/FilesetResolver.');
+    }
+
     const fileset = await FilesetResolver.forVisionTasks(WASM_URL);
 
     const create = (delegate) => HandLandmarker.createFromOptions(fileset, {
