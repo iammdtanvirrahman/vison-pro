@@ -1,48 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#050507">
-  <meta name="description" content="Vision Pro — camera controlled spatial interface">
-  <title>Vision Pro</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <main id="app" aria-label="Vision Pro interface">
-    <video id="camera" autoplay muted playsinline></video>
-    <canvas id="visionCanvas"></canvas>
-
-    <section class="hud top-left glass"><span class="status-dot"></span><span>VISION PRO</span><small id="visionStatus">INITIALIZING</small></section>
-    <section class="hud top-right glass"><span id="clock">--:--</span><span id="battery">● 100%</span></section>
-
-    <section id="centerUI" class="center-ui">
-      <div class="orb" id="orb"><div class="orb-core"></div></div>
-      <h1>Look. Gesture. Control.</h1>
-      <p id="hint">Enable camera access to begin spatial control.</p>
-      <button id="startBtn">START VISION</button>
-    </section>
-
-    <section id="spaceLayer" aria-label="Spatial apps">
-      <article class="spatial-window glass" data-window="control" style="--x:12vw;--y:22vh">
-        <header><span>CONTROL</span><button class="close-window">×</button></header>
-        <div class="window-content"><strong>READY</strong><span>Gesture control</span><div class="meter"><i></i></div></div>
-      </article>
-      <article class="spatial-window glass" data-window="vision" style="--x:67vw;--y:20vh">
-        <header><span>VISION</span><button class="close-window">×</button></header>
-        <div class="window-content"><strong id="gestureState">IDLE</strong><span>Spatial tracking</span><div class="tracking-ring"></div></div>
-      </article>
-    </section>
-
-    <div id="spatialCursor"><span></span></div>
-    <nav class="dock glass" aria-label="Applications">
-      <button class="dock-item active" data-app="home">⌂<span>Home</span></button>
-      <button class="dock-item" data-app="camera">◉<span>Vision</span></button>
-      <button class="dock-item" data-app="controls">✦<span>Control</span></button>
-      <button class="dock-item" data-app="settings">⚙<span>Settings</span></button>
-    </nav>
-    <div id="toast" role="status"></div>
-  </main>
-  <script type="module" src="main.js"></script>
-</body>
-</html>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#050507"><title>Vision Pro</title><link rel="stylesheet" href="style.css">
+</head><body><main id="app" aria-label="Vision Pro interface"><video id="camera" autoplay muted playsinline></video><canvas id="visionCanvas"></canvas>
+<section class="hud top-left glass"><span class="status-dot"></span><span>VISION PRO</span><small id="visionStatus">INITIALIZING</small></section><section class="hud top-right glass"><span id="clock">--:--</span><span id="battery">● 100%</span></section>
+<section id="centerUI" class="center-ui"><div class="orb"><div class="orb-core"></div></div><h1>Look. Gesture. Control.</h1><p id="hint">Enable camera access to begin spatial control.</p><button id="startBtn">START VISION</button></section>
+<section id="spaceLayer" aria-label="Spatial apps"><article class="spatial-window glass" data-window="control" style="--x:12vw;--y:22vh"><header><span>CONTROL</span><button class="close-window">×</button></header><div class="window-content"><strong>READY</strong><span>Hand interaction</span><div class="meter"><i></i></div></div></article><article class="spatial-window glass" data-window="vision" style="--x:67vw;--y:20vh"><header><span>VISION</span><button class="close-window">×</button></header><div class="window-content"><strong id="gestureState">IDLE</strong><span>Spatial tracking</span><div class="tracking-ring"></div></div></article></section>
+<div id="spatialCursor"><span></span></div><nav class="dock glass"><button class="dock-item active" data-app="home">⌂<span>Home</span></button><button class="dock-item" data-app="camera">◉<span>Vision</span></button><button class="dock-item" data-app="controls">✦<span>Control</span></button><button class="dock-item" data-app="settings">⚙<span>Settings</span></button></nav><div id="toast" role="status"></div></main><script type="module" src="main.js"></script></body></html>
