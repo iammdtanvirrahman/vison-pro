@@ -12,7 +12,7 @@ const gestureState = $('#gestureState');
 
 const MODEL_URL = 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task';
 const WASM_URL = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.22/wasm';
-const LIB_URL = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.22/+esm';
+const LIB_URL = 'https://esm.run/@mediapipe/tasks-vision@0.10.22';
 
 let stream = null;
 let vision = false;
@@ -155,8 +155,6 @@ async function startVision() {
     notify('Camera online');
 
     draw();
-
-    // Wait for the camera pipeline to be alive, then initialize tracking.
     await loadHands();
   } catch (error) {
     console.error('Camera start failed:', error);
@@ -265,7 +263,6 @@ function processHand(result) {
   const palm = lm[9];
   const scale = Math.max(distance(wrist, palm), 0.04);
 
-  // The camera is mirrored in CSS, so reverse X for the UI coordinate system.
   const x = (1 - index.x) * innerWidth;
   const y = index.y * innerHeight;
   moveCursor(x, y);
@@ -301,7 +298,6 @@ function draw() {
   raf = requestAnimationFrame(draw);
 }
 
-// Mouse fallback keeps the UI usable while the camera/model is unavailable.
 addEventListener('pointermove', (event) => {
   if (!vision || handLandmarker) return;
   moveCursor(event.clientX, event.clientY);
